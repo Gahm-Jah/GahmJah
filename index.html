@@ -1,0 +1,611 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gahm_Jah</title>
+  <meta name="description" content="Gahm_Jah HTML tools home">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231b4332'/%3E%3Cellipse cx='33' cy='34' rx='21' ry='16' fill='%23d89b46' transform='rotate(-13 33 34)'/%3E%3Ccircle cx='24' cy='30' r='2' fill='%236b3f1d'/%3E%3Ccircle cx='37' cy='39' r='2' fill='%236b3f1d'/%3E%3Cpath d='M20 47c8 5 22 5 31-3' fill='none' stroke='%23f5f0e6' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E">
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #16231d;
+      --muted: #667169;
+      --paper: #fbfaf5;
+      --line: #dce6d2;
+      --leaf: #1f6f4a;
+      --leaf-dark: #174d37;
+      --gold: #d99a35;
+      --sky: #dceff0;
+      --rose: #f3dad0;
+      --shadow: 0 24px 70px rgba(22, 35, 29, 0.14);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background:
+        linear-gradient(140deg, rgba(220, 239, 240, 0.72), transparent 34%),
+        linear-gradient(315deg, rgba(243, 218, 208, 0.62), transparent 36%),
+        var(--paper);
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .shell {
+      width: min(1060px, calc(100% - 36px));
+      margin: 0 auto;
+      padding: 42px 0 56px;
+    }
+
+    .masthead {
+      display: grid;
+      justify-items: center;
+      text-align: center;
+      gap: 18px;
+      padding: 22px 0 30px;
+    }
+
+    .brand {
+      margin: 0;
+      font-size: clamp(2.9rem, 8vw, 6.8rem);
+      line-height: 0.92;
+      letter-spacing: 0;
+      font-weight: 900;
+    }
+
+    .potato-wrap {
+      width: min(360px, 76vw);
+      aspect-ratio: 1;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 48% 48%, rgba(255, 255, 255, 0.88), rgba(255, 255, 255, 0.34) 52%, transparent 70%),
+        linear-gradient(135deg, rgba(31, 111, 74, 0.18), rgba(217, 154, 53, 0.16));
+      box-shadow: var(--shadow);
+    }
+
+    .pixel-potato {
+      --pixel: clamp(8px, 2.45vw, 15px);
+      position: relative;
+      width: calc(var(--pixel) * 22);
+      height: calc(var(--pixel) * 17);
+      transform: rotate(-9deg);
+      filter: drop-shadow(0 20px 18px rgba(76, 54, 22, 0.24));
+      image-rendering: pixelated;
+    }
+
+    .pixel-potato::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: var(--pixel);
+      height: var(--pixel);
+      background: transparent;
+      box-shadow:
+        calc(var(--pixel) * 7) calc(var(--pixel) * 1) #9a5c22,
+        calc(var(--pixel) * 8) calc(var(--pixel) * 1) #b86f2b,
+        calc(var(--pixel) * 9) calc(var(--pixel) * 1) #c98534,
+        calc(var(--pixel) * 10) calc(var(--pixel) * 1) #d79a45,
+        calc(var(--pixel) * 11) calc(var(--pixel) * 1) #d79a45,
+        calc(var(--pixel) * 12) calc(var(--pixel) * 1) #c98534,
+        calc(var(--pixel) * 13) calc(var(--pixel) * 1) #a96527,
+        calc(var(--pixel) * 5) calc(var(--pixel) * 2) #8a4e1f,
+        calc(var(--pixel) * 6) calc(var(--pixel) * 2) #b86f2b,
+        calc(var(--pixel) * 7) calc(var(--pixel) * 2) #d79a45,
+        calc(var(--pixel) * 8) calc(var(--pixel) * 2) #e4ad59,
+        calc(var(--pixel) * 9) calc(var(--pixel) * 2) #edbf71,
+        calc(var(--pixel) * 10) calc(var(--pixel) * 2) #efc77d,
+        calc(var(--pixel) * 11) calc(var(--pixel) * 2) #e9b866,
+        calc(var(--pixel) * 12) calc(var(--pixel) * 2) #d79a45,
+        calc(var(--pixel) * 13) calc(var(--pixel) * 2) #bf7830,
+        calc(var(--pixel) * 14) calc(var(--pixel) * 2) #9a5c22,
+        calc(var(--pixel) * 15) calc(var(--pixel) * 2) #76451c,
+        calc(var(--pixel) * 3) calc(var(--pixel) * 3) #77431b,
+        calc(var(--pixel) * 4) calc(var(--pixel) * 3) #a96527,
+        calc(var(--pixel) * 5) calc(var(--pixel) * 3) #d18d3b,
+        calc(var(--pixel) * 6) calc(var(--pixel) * 3) #e3aa55,
+        calc(var(--pixel) * 7) calc(var(--pixel) * 3) #f0c97b,
+        calc(var(--pixel) * 8) calc(var(--pixel) * 3) #f5d88e,
+        calc(var(--pixel) * 9) calc(var(--pixel) * 3) #f6dc99,
+        calc(var(--pixel) * 10) calc(var(--pixel) * 3) #f3d185,
+        calc(var(--pixel) * 11) calc(var(--pixel) * 3) #edbf71,
+        calc(var(--pixel) * 12) calc(var(--pixel) * 3) #e3aa55,
+        calc(var(--pixel) * 13) calc(var(--pixel) * 3) #ca8434,
+        calc(var(--pixel) * 14) calc(var(--pixel) * 3) #aa6425,
+        calc(var(--pixel) * 15) calc(var(--pixel) * 3) #8a4e1f,
+        calc(var(--pixel) * 16) calc(var(--pixel) * 3) #6f3e19,
+        calc(var(--pixel) * 2) calc(var(--pixel) * 4) #77431b,
+        calc(var(--pixel) * 3) calc(var(--pixel) * 4) #b86f2b,
+        calc(var(--pixel) * 4) calc(var(--pixel) * 4) #df9f4a,
+        calc(var(--pixel) * 5) calc(var(--pixel) * 4) #f0c97b,
+        calc(var(--pixel) * 6) calc(var(--pixel) * 4) #f6dc99,
+        calc(var(--pixel) * 7) calc(var(--pixel) * 4) #f5d88e,
+        calc(var(--pixel) * 8) calc(var(--pixel) * 4) #efc77d,
+        calc(var(--pixel) * 9) calc(var(--pixel) * 4) #f3d185,
+        calc(var(--pixel) * 10) calc(var(--pixel) * 4) #f6dc99,
+        calc(var(--pixel) * 11) calc(var(--pixel) * 4) #eec274,
+        calc(var(--pixel) * 12) calc(var(--pixel) * 4) #d79a45,
+        calc(var(--pixel) * 13) calc(var(--pixel) * 4) #ca8434,
+        calc(var(--pixel) * 14) calc(var(--pixel) * 4) #b86f2b,
+        calc(var(--pixel) * 15) calc(var(--pixel) * 4) #96551f,
+        calc(var(--pixel) * 16) calc(var(--pixel) * 4) #76451c,
+        calc(var(--pixel) * 17) calc(var(--pixel) * 4) #5f3516,
+        calc(var(--pixel) * 1) calc(var(--pixel) * 5) #693a17,
+        calc(var(--pixel) * 2) calc(var(--pixel) * 5) #aa6425,
+        calc(var(--pixel) * 3) calc(var(--pixel) * 5) #d18d3b,
+        calc(var(--pixel) * 4) calc(var(--pixel) * 5) #edbf71,
+        calc(var(--pixel) * 5) calc(var(--pixel) * 5) #f6dc99,
+        calc(var(--pixel) * 6) calc(var(--pixel) * 5) #f0c97b,
+        calc(var(--pixel) * 7) calc(var(--pixel) * 5) #e6ad5b,
+        calc(var(--pixel) * 8) calc(var(--pixel) * 5) #d28a35,
+        calc(var(--pixel) * 9) calc(var(--pixel) * 5) #e6ad5b,
+        calc(var(--pixel) * 10) calc(var(--pixel) * 5) #f0c97b,
+        calc(var(--pixel) * 11) calc(var(--pixel) * 5) #e7b260,
+        calc(var(--pixel) * 12) calc(var(--pixel) * 5) #cf8c3a,
+        calc(var(--pixel) * 13) calc(var(--pixel) * 5) #b86f2b,
+        calc(var(--pixel) * 14) calc(var(--pixel) * 5) #9a5c22,
+        calc(var(--pixel) * 15) calc(var(--pixel) * 5) #8a4e1f,
+        calc(var(--pixel) * 16) calc(var(--pixel) * 5) #76451c,
+        calc(var(--pixel) * 17) calc(var(--pixel) * 5) #5f3516,
+        calc(var(--pixel) * 18) calc(var(--pixel) * 5) #4f2d13,
+        calc(var(--pixel) * 1) calc(var(--pixel) * 6) #77431b,
+        calc(var(--pixel) * 2) calc(var(--pixel) * 6) #bf7830,
+        calc(var(--pixel) * 3) calc(var(--pixel) * 6) #e3aa55,
+        calc(var(--pixel) * 4) calc(var(--pixel) * 6) #f0c97b,
+        calc(var(--pixel) * 5) calc(var(--pixel) * 6) #eec274,
+        calc(var(--pixel) * 6) calc(var(--pixel) * 6) #d9963e,
+        calc(var(--pixel) * 7) calc(var(--pixel) * 6) #b86f2b,
+        calc(var(--pixel) * 8) calc(var(--pixel) * 6) #8a4e1f,
+        calc(var(--pixel) * 9) calc(var(--pixel) * 6) #ca8434,
+        calc(var(--pixel) * 10) calc(var(--pixel) * 6) #e6ad5b,
+        calc(var(--pixel) * 11) calc(var(--pixel) * 6) #e3aa55,
+        calc(var(--pixel) * 12) calc(var(--pixel) * 6) #c78031,
+        calc(var(--pixel) * 13) calc(var(--pixel) * 6) #9a5c22,
+        calc(var(--pixel) * 14) calc(var(--pixel) * 6) #8a4e1f,
+        calc(var(--pixel) * 15) calc(var(--pixel) * 6) #76451c,
+        calc(var(--pixel) * 16) calc(var(--pixel) * 6) #6f3e19,
+        calc(var(--pixel) * 17) calc(var(--pixel) * 6) #5f3516,
+        calc(var(--pixel) * 18) calc(var(--pixel) * 6) #4f2d13,
+        calc(var(--pixel) * 19) calc(var(--pixel) * 6) #4f2d13,
+        calc(var(--pixel) * 0) calc(var(--pixel) * 7) #5f3516,
+        calc(var(--pixel) * 1) calc(var(--pixel) * 7) #8a4e1f,
+        calc(var(--pixel) * 2) calc(var(--pixel) * 7) #c78031,
+        calc(var(--pixel) * 3) calc(var(--pixel) * 7) #e6ad5b,
+        calc(var(--pixel) * 4) calc(var(--pixel) * 7) #eec274,
+        calc(var(--pixel) * 5) calc(var(--pixel) * 7) #d9963e,
+        calc(var(--pixel) * 6) calc(var(--pixel) * 7) #a96527,
+        calc(var(--pixel) * 7) calc(var(--pixel) * 7) #8a4e1f,
+        calc(var(--pixel) * 8) calc(var(--pixel) * 7) #b86f2b,
+        calc(var(--pixel) * 9) calc(var(--pixel) * 7) #df9f4a,
+        calc(var(--pixel) * 10) calc(var(--pixel) * 7) #d9963e,
+        calc(var(--pixel) * 11) calc(var(--pixel) * 7) #bf7830,
+        calc(var(--pixel) * 12) calc(var(--pixel) * 7) #9a5c22,
+        calc(var(--pixel) * 13) calc(var(--pixel) * 7) #76451c,
+        calc(var(--pixel) * 14) calc(var(--pixel) * 7) #6f3e19,
+        calc(var(--pixel) * 15) calc(var(--pixel) * 7) #76451c,
+        calc(var(--pixel) * 16) calc(var(--pixel) * 7) #6f3e19,
+        calc(var(--pixel) * 17) calc(var(--pixel) * 7) #5f3516,
+        calc(var(--pixel) * 18) calc(var(--pixel) * 7) #4f2d13,
+        calc(var(--pixel) * 19) calc(var(--pixel) * 7) #4f2d13,
+        calc(var(--pixel) * 0) calc(var(--pixel) * 8) #5f3516,
+        calc(var(--pixel) * 1) calc(var(--pixel) * 8) #96551f,
+        calc(var(--pixel) * 2) calc(var(--pixel) * 8) #cf8c3a,
+        calc(var(--pixel) * 3) calc(var(--pixel) * 8) #e7b260,
+        calc(var(--pixel) * 4) calc(var(--pixel) * 8) #e6ad5b,
+        calc(var(--pixel) * 5) calc(var(--pixel) * 8) #c78031,
+        calc(var(--pixel) * 6) calc(var(--pixel) * 8) #9a5c22,
+        calc(var(--pixel) * 7) calc(var(--pixel) * 8) #a96527,
+        calc(var(--pixel) * 8) calc(var(--pixel) * 8) #d18d3b,
+        calc(var(--pixel) * 9) calc(var(--pixel) * 8) #d9963e,
+        calc(var(--pixel) * 10) calc(var(--pixel) * 8) #bf7830,
+        calc(var(--pixel) * 11) calc(var(--pixel) * 8) #9a5c22,
+        calc(var(--pixel) * 12) calc(var(--pixel) * 8) #76451c,
+        calc(var(--pixel) * 13) calc(var(--pixel) * 8) #5f3516,
+        calc(var(--pixel) * 14) calc(var(--pixel) * 8) #5f3516,
+        calc(var(--pixel) * 15) calc(var(--pixel) * 8) #6f3e19,
+        calc(var(--pixel) * 16) calc(var(--pixel) * 8) #5f3516,
+        calc(var(--pixel) * 17) calc(var(--pixel) * 8) #4f2d13,
+        calc(var(--pixel) * 18) calc(var(--pixel) * 8) #4f2d13,
+        calc(var(--pixel) * 19) calc(var(--pixel) * 8) #3f2410,
+        calc(var(--pixel) * 1) calc(var(--pixel) * 9) #8a4e1f,
+        calc(var(--pixel) * 2) calc(var(--pixel) * 9) #bf7830,
+        calc(var(--pixel) * 3) calc(var(--pixel) * 9) #df9f4a,
+        calc(var(--pixel) * 4) calc(var(--pixel) * 9) #d9963e,
+        calc(var(--pixel) * 5) calc(var(--pixel) * 9) #b86f2b,
+        calc(var(--pixel) * 6) calc(var(--pixel) * 9) #a96527,
+        calc(var(--pixel) * 7) calc(var(--pixel) * 9) #c78031,
+        calc(var(--pixel) * 8) calc(var(--pixel) * 9) #d18d3b,
+        calc(var(--pixel) * 9) calc(var(--pixel) * 9) #c78031,
+        calc(var(--pixel) * 10) calc(var(--pixel) * 9) #a96527,
+        calc(var(--pixel) * 11) calc(var(--pixel) * 9) #8a4e1f,
+        calc(var(--pixel) * 12) calc(var(--pixel) * 9) #693a17,
+        calc(var(--pixel) * 13) calc(var(--pixel) * 9) #5f3516,
+        calc(var(--pixel) * 14) calc(var(--pixel) * 9) #5f3516,
+        calc(var(--pixel) * 15) calc(var(--pixel) * 9) #5f3516,
+        calc(var(--pixel) * 16) calc(var(--pixel) * 9) #4f2d13,
+        calc(var(--pixel) * 17) calc(var(--pixel) * 9) #4f2d13,
+        calc(var(--pixel) * 18) calc(var(--pixel) * 9) #3f2410,
+        calc(var(--pixel) * 2) calc(var(--pixel) * 10) #77431b,
+        calc(var(--pixel) * 3) calc(var(--pixel) * 10) #aa6425,
+        calc(var(--pixel) * 4) calc(var(--pixel) * 10) #ca8434,
+        calc(var(--pixel) * 5) calc(var(--pixel) * 10) #c78031,
+        calc(var(--pixel) * 6) calc(var(--pixel) * 10) #b86f2b,
+        calc(var(--pixel) * 7) calc(var(--pixel) * 10) #c78031,
+        calc(var(--pixel) * 8) calc(var(--pixel) * 10) #bf7830,
+        calc(var(--pixel) * 9) calc(var(--pixel) * 10) #a96527,
+        calc(var(--pixel) * 10) calc(var(--pixel) * 10) #8a4e1f,
+        calc(var(--pixel) * 11) calc(var(--pixel) * 10) #77431b,
+        calc(var(--pixel) * 12) calc(var(--pixel) * 10) #5f3516,
+        calc(var(--pixel) * 13) calc(var(--pixel) * 10) #5f3516,
+        calc(var(--pixel) * 14) calc(var(--pixel) * 10) #5f3516,
+        calc(var(--pixel) * 15) calc(var(--pixel) * 10) #4f2d13,
+        calc(var(--pixel) * 16) calc(var(--pixel) * 10) #4f2d13,
+        calc(var(--pixel) * 17) calc(var(--pixel) * 10) #3f2410,
+        calc(var(--pixel) * 3) calc(var(--pixel) * 11) #693a17,
+        calc(var(--pixel) * 4) calc(var(--pixel) * 11) #8a4e1f,
+        calc(var(--pixel) * 5) calc(var(--pixel) * 11) #aa6425,
+        calc(var(--pixel) * 6) calc(var(--pixel) * 11) #b86f2b,
+        calc(var(--pixel) * 7) calc(var(--pixel) * 11) #aa6425,
+        calc(var(--pixel) * 8) calc(var(--pixel) * 11) #9a5c22,
+        calc(var(--pixel) * 9) calc(var(--pixel) * 11) #8a4e1f,
+        calc(var(--pixel) * 10) calc(var(--pixel) * 11) #76451c,
+        calc(var(--pixel) * 11) calc(var(--pixel) * 11) #693a17,
+        calc(var(--pixel) * 12) calc(var(--pixel) * 11) #5f3516,
+        calc(var(--pixel) * 13) calc(var(--pixel) * 11) #4f2d13,
+        calc(var(--pixel) * 14) calc(var(--pixel) * 11) #4f2d13,
+        calc(var(--pixel) * 15) calc(var(--pixel) * 11) #3f2410,
+        calc(var(--pixel) * 5) calc(var(--pixel) * 12) #5f3516,
+        calc(var(--pixel) * 6) calc(var(--pixel) * 12) #77431b,
+        calc(var(--pixel) * 7) calc(var(--pixel) * 12) #8a4e1f,
+        calc(var(--pixel) * 8) calc(var(--pixel) * 12) #77431b,
+        calc(var(--pixel) * 9) calc(var(--pixel) * 12) #693a17,
+        calc(var(--pixel) * 10) calc(var(--pixel) * 12) #5f3516,
+        calc(var(--pixel) * 11) calc(var(--pixel) * 12) #4f2d13,
+        calc(var(--pixel) * 12) calc(var(--pixel) * 12) #3f2410,
+        calc(var(--pixel) * 13) calc(var(--pixel) * 12) #3f2410;
+    }
+
+    .pixel-potato span {
+      position: absolute;
+      display: block;
+      background: #4f2d13;
+      image-rendering: pixelated;
+    }
+
+    .shine {
+      left: calc(var(--pixel) * 4);
+      top: calc(var(--pixel) * 3);
+      width: calc(var(--pixel) * 3);
+      height: calc(var(--pixel) * 1);
+      background: #ffe5a6;
+      box-shadow:
+        calc(var(--pixel) * 1) calc(var(--pixel) * 1) #f7d58c,
+        calc(var(--pixel) * -1) calc(var(--pixel) * 2) #f0c97b;
+    }
+
+    .eye {
+      width: calc(var(--pixel) * 1);
+      height: calc(var(--pixel) * 1);
+      background: #3a2110;
+      box-shadow: inset calc(var(--pixel) * -0.18) calc(var(--pixel) * -0.18) 0 #1f1209;
+    }
+
+    .eye-1 { left: calc(var(--pixel) * 6); top: calc(var(--pixel) * 5); }
+    .eye-2 { left: calc(var(--pixel) * 10); top: calc(var(--pixel) * 4); }
+    .eye-3 { left: calc(var(--pixel) * 12); top: calc(var(--pixel) * 8); }
+    .eye-4 { left: calc(var(--pixel) * 5); top: calc(var(--pixel) * 9); }
+
+    .soil {
+      width: calc(var(--pixel) * 0.62);
+      height: calc(var(--pixel) * 0.62);
+      background: #2f1a0b;
+    }
+
+    .soil-1 { left: calc(var(--pixel) * 8); top: calc(var(--pixel) * 3); }
+    .soil-2 { left: calc(var(--pixel) * 13); top: calc(var(--pixel) * 3); }
+    .soil-3 { left: calc(var(--pixel) * 3); top: calc(var(--pixel) * 6); }
+    .soil-4 { left: calc(var(--pixel) * 9); top: calc(var(--pixel) * 7); }
+    .soil-5 { left: calc(var(--pixel) * 15); top: calc(var(--pixel) * 7); }
+    .soil-6 { left: calc(var(--pixel) * 7); top: calc(var(--pixel) * 10); }
+    }
+
+    .home-panel {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 18px;
+      margin-top: 10px;
+      padding: 24px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.72);
+      box-shadow: 0 18px 50px rgba(22, 35, 29, 0.08);
+      backdrop-filter: blur(14px);
+    }
+
+    .panel-top {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 16px;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 16px;
+    }
+
+    .panel-title {
+      margin: 0;
+      font-size: clamp(1.3rem, 3vw, 2rem);
+      line-height: 1.15;
+    }
+
+    .status {
+      min-height: 1.4em;
+      margin: 6px 0 0;
+      color: var(--muted);
+      font-size: 0.96rem;
+    }
+
+    .refresh {
+      appearance: none;
+      border: 1px solid rgba(31, 111, 74, 0.32);
+      border-radius: 999px;
+      background: var(--leaf);
+      color: white;
+      font: inherit;
+      font-weight: 800;
+      padding: 0.78rem 1rem;
+      cursor: pointer;
+      box-shadow: 0 10px 24px rgba(31, 111, 74, 0.22);
+      transition: transform 160ms ease, background 160ms ease, box-shadow 160ms ease;
+      white-space: nowrap;
+    }
+
+    .refresh:hover {
+      background: var(--leaf-dark);
+      transform: translateY(-1px);
+      box-shadow: 0 14px 28px rgba(31, 111, 74, 0.25);
+    }
+
+    .refresh:focus-visible,
+    .tool-link:focus-visible {
+      outline: 3px solid rgba(217, 154, 53, 0.58);
+      outline-offset: 3px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+      min-height: 92px;
+    }
+
+    .tool-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      min-height: 72px;
+      padding: 16px 18px;
+      border: 1px solid rgba(22, 35, 29, 0.1);
+      border-radius: 8px;
+      background: #ffffff;
+      text-decoration: none;
+      font-weight: 850;
+      box-shadow: 0 10px 24px rgba(22, 35, 29, 0.06);
+      transition: transform 160ms ease, border-color 160ms ease, box-shadow 160ms ease;
+    }
+
+    .tool-link:hover {
+      transform: translateY(-2px);
+      border-color: rgba(31, 111, 74, 0.34);
+      box-shadow: 0 16px 30px rgba(22, 35, 29, 0.1);
+    }
+
+    .tool-name {
+      overflow-wrap: anywhere;
+    }
+
+    .tool-arrow {
+      width: 34px;
+      height: 34px;
+      flex: 0 0 auto;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: rgba(217, 154, 53, 0.16);
+      color: #8b5713;
+      font-size: 1.2rem;
+      line-height: 1;
+    }
+
+    .empty {
+      display: grid;
+      place-items: center;
+      min-height: 92px;
+      border: 1px dashed rgba(102, 113, 105, 0.42);
+      border-radius: 8px;
+      color: var(--muted);
+      text-align: center;
+      padding: 18px;
+      font-size: 1rem;
+    }
+
+    .note {
+      margin: 4px 0 0;
+      color: var(--muted);
+      font-size: 0.93rem;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 680px) {
+      .shell {
+        width: min(100% - 24px, 1060px);
+        padding-top: 24px;
+      }
+
+      .masthead {
+        gap: 12px;
+        padding-bottom: 18px;
+      }
+
+      .home-panel {
+        padding: 18px;
+      }
+
+      .panel-top {
+        display: grid;
+        align-items: start;
+      }
+
+      .refresh {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <header class="masthead" aria-label="Gahm_Jah home">
+      <h1 class="brand">Gahm_Jah</h1>
+      <div class="potato-wrap">
+        <div class="pixel-potato" role="img" aria-label="픽셀 감자 그림">
+          <span class="shine"></span>
+          <span class="eye eye-1"></span>
+          <span class="eye eye-2"></span>
+          <span class="eye eye-3"></span>
+          <span class="eye eye-4"></span>
+          <span class="soil soil-1"></span>
+          <span class="soil soil-2"></span>
+          <span class="soil soil-3"></span>
+          <span class="soil soil-4"></span>
+          <span class="soil soil-5"></span>
+          <span class="soil soil-6"></span>
+        </div>
+      </div>
+    </header>
+
+    <section class="home-panel" aria-labelledby="page-list-title">
+      <div class="panel-top">
+        <div>
+          <h2 class="panel-title" id="page-list-title">목차</h2>
+          <p class="status" id="status">HTML 파일을 찾는 중입니다.</p>
+        </div>
+        <button class="refresh" type="button" id="refreshButton">새로고침</button>
+      </div>
+
+      <nav class="grid" id="pageGrid" aria-label="HTML page list"></nav>
+      <p class="note">감자 그림은 HTML과 CSS만으로 그려져 index.html 하나만 올려도 표시됩니다. 같은 폴더에 새 HTML 파일을 올리면 GitHub Pages에서 이 목록에 자동으로 표시됩니다.</p>
+    </section>
+  </main>
+
+  <script>
+    const manualLinks = [
+      // GitHub API를 사용할 수 없는 환경에서 항상 보여줄 항목이 있다면 아래처럼 추가하세요.
+      // { title: "통계학", href: "statistics.html" },
+    ];
+
+    const pageGrid = document.querySelector("#pageGrid");
+    const statusText = document.querySelector("#status");
+    const refreshButton = document.querySelector("#refreshButton");
+
+    function prettifyName(fileName) {
+      return decodeURIComponent(fileName)
+        .replace(/\.html?$/i, "")
+        .replace(/[-_]+/g, " ")
+        .trim() || fileName;
+    }
+
+    function renderLinks(items, message) {
+      pageGrid.innerHTML = "";
+      statusText.textContent = message;
+
+      if (!items.length) {
+        const empty = document.createElement("div");
+        empty.className = "empty";
+        empty.textContent = "아직 연결할 HTML 파일이 없습니다.";
+        pageGrid.append(empty);
+        return;
+      }
+
+      for (const item of items) {
+        const link = document.createElement("a");
+        link.className = "tool-link";
+        link.href = item.href;
+        link.innerHTML = `<span class="tool-name"></span><span class="tool-arrow" aria-hidden="true">›</span>`;
+        link.querySelector(".tool-name").textContent = item.title;
+        pageGrid.append(link);
+      }
+    }
+
+    function getGitHubTarget() {
+      const host = window.location.hostname;
+      if (!host.endsWith(".github.io")) return null;
+
+      const owner = host.replace(".github.io", "");
+      const pathParts = window.location.pathname.split("/").filter(Boolean);
+      const isUserSite = pathParts.length === 0;
+      const repo = isUserSite ? `${owner}.github.io` : pathParts[0];
+      const directoryParts = isUserSite ? [] : pathParts.slice(1);
+      const directory = directoryParts.map(encodeURIComponent).join("/");
+
+      return { owner, repo, directory };
+    }
+
+    async function loadPages() {
+      const target = getGitHubTarget();
+      const localItems = manualLinks.map((item) => ({
+        title: item.title || prettifyName(item.href),
+        href: item.href,
+      }));
+
+      if (!target) {
+        renderLinks(localItems, "GitHub Pages에서 열면 HTML 목록이 자동으로 표시됩니다.");
+        return;
+      }
+
+      const apiPath = target.directory ? `/${target.directory}` : "";
+      const apiUrl = `https://api.github.com/repos/${target.owner}/${target.repo}/contents${apiPath}`;
+
+      try {
+        statusText.textContent = "HTML 파일을 찾는 중입니다.";
+        const response = await fetch(apiUrl, {
+          headers: { "Accept": "application/vnd.github+json" },
+        });
+        if (!response.ok) throw new Error(`GitHub API ${response.status}`);
+
+        const files = await response.json();
+        const htmlItems = files
+          .filter((file) => file.type === "file" && /\.html?$/i.test(file.name) && !/^index\.html?$/i.test(file.name))
+          .sort((a, b) => a.name.localeCompare(b.name, "ko"))
+          .map((file) => ({
+            title: prettifyName(file.name),
+            href: file.name,
+          }));
+
+        const merged = [...localItems, ...htmlItems].filter((item, index, arr) =>
+          arr.findIndex((candidate) => candidate.href === item.href) === index
+        );
+
+        renderLinks(merged, merged.length ? `${merged.length}개의 HTML 파일` : "연결할 HTML 파일을 기다리는 중입니다.");
+      } catch (error) {
+        renderLinks(localItems, "자동 목록을 불러오지 못했습니다.");
+      }
+    }
+
+    refreshButton.addEventListener("click", loadPages);
+    loadPages();
+  </script>
+</body>
+</html>
+
+
